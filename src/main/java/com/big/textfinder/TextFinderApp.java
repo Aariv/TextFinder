@@ -38,11 +38,12 @@ public class TextFinderApp {
             "Timothy", "Jose", "Larry", "Jeffrey", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory",
             "Joshua", "Jerry", "Dennis", "Walter", "Patrick", "Peter", "Harold", "Douglas", "Henry", "Carl", "Arthur",
             "Ryan", "Roger"));
+	private static final String FILE_PATH = "src/main/resources/big.txt";
 
 	public static void main(String[] args) {
 		FileProcessor fileProcessor = new FileProcessor();
 		// STEP 1: Process the file
-		ConcurrentHashMap<String, List<WordLocation>> allMatches = fileProcessor.processFile("/Users/al/Downloads/big.txt", SEARCH_TERMS);
+		ConcurrentHashMap<String, List<WordLocation>> allMatches = fileProcessor.processFile(FILE_PATH, SEARCH_TERMS);
 		ResultPrinter printer = new ResultPrinter();
 		
 		// STEP 3: Get the results from all the matchers.
