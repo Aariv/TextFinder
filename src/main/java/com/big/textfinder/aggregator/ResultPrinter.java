@@ -9,8 +9,8 @@ public class ResultPrinter {
 
 	public void printResults(ConcurrentHashMap<String, List<WordLocation>> allMatches) {
 		allMatches.forEach((k, v) -> {
-            System.out.println(k + " --> " + v);
-        });
+			System.out.println(k + " --> " + v);
+		});
 	}
 
 }
