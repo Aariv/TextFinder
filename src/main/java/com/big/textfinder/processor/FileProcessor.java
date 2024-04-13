@@ -46,7 +46,9 @@ public class FileProcessor {
                 if (lineNumber % LINES_PER_PART == 0 || !it.hasNext()) {
                     List<String> finalPart = new ArrayList<>(part);
                     int finalLineNumber = lineNumber;
-                    // Step 2: Concurrent Matcher to search for the match.
+                    /*
+                     * STEP 2: The concurrent matcher
+                     */
                     executor.submit(() -> {
                     	TextMatcher matcher = new TextMatcher(searchTerms);
                         Map<String, List<WordLocation>> matches = matcher.findMatches(finalPart, finalLineNumber - finalPart.size() + 1);

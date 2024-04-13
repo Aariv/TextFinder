@@ -10,6 +10,24 @@ import com.big.textfinder.aggregator.ResultPrinter;
 import com.big.textfinder.model.WordLocation;
 import com.big.textfinder.processor.FileProcessor;
 
+/**
+ * Design and implement a simple Java program to find specific strings in a
+ * large text. 
+ * 
+ * The program should be composed of the following modules: 
+ * 
+ * 1. The main module - reads a large text file in parts (e.g. 1000 lines in each part)
+ * 	and sends each part (as string) to a matcher. After all matchers completed,
+ * it calls the aggregator to combine and print the results 
+ * 
+ * 2. The matcher - gets a text string as input and searches for matches of a given set of
+ * strings. The result is a map from a word to its location(s) in the text 
+ * 
+ * 3. The aggregator - aggregates the results from all the matchers and prints the results.
+ * 
+ * @author Ariv
+ *
+ */
 public class TextFinderApp {
 
 	private static final Set<String> SEARCH_TERMS = new HashSet<String>(
@@ -23,10 +41,11 @@ public class TextFinderApp {
 
 	public static void main(String[] args) {
 		FileProcessor fileProcessor = new FileProcessor();
-		// Step 1: Process the file
+		// STEP 1: Process the file
 		ConcurrentHashMap<String, List<WordLocation>> allMatches = fileProcessor.processFile("/Users/al/Downloads/big.txt", SEARCH_TERMS);
 		ResultPrinter printer = new ResultPrinter();
-		// Step 3: Get the results from all the matchers.
+		
+		// STEP 3: Get the results from all the matchers.
 		printer.printResults(allMatches);
 	}
 }
