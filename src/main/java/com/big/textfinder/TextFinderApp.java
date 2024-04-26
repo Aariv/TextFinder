@@ -38,15 +38,18 @@ public class TextFinderApp {
             "Timothy", "Jose", "Larry", "Jeffrey", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory",
             "Joshua", "Jerry", "Dennis", "Walter", "Patrick", "Peter", "Harold", "Douglas", "Henry", "Carl", "Arthur",
             "Ryan", "Roger"));
-	private static final String FILE_PATH = "src/main/resources/big.txt";
-
+//	private static final String FILE_PATH = "src/main/resources/big.txt";
+//	private static final String FILE_PATH = "/Users/al/Downloads/big.txt"; // 100 GB
+	private static final String FILE_PATH = "/Users/al/Downloads/big2.txt"; // 15 GB
+//	private static final String FILE_PATH = "/Users/al/Downloads/big3.txt"; // 5 GB
+	
 	public static void main(String[] args) {
 		FileProcessor fileProcessor = new FileProcessor();
 		// STEP 1: Process the file
 		ConcurrentHashMap<String, List<WordLocation>> allMatches = fileProcessor.processFile(FILE_PATH, SEARCH_TERMS);
 		ResultPrinter printer = new ResultPrinter();
-		
 		// STEP 3: Get the results from all the matchers.
-		printer.printResults(allMatches);
+//		printer.printResults(allMatches);
+		printer.printResultsInFile(allMatches);
 	}
 }
