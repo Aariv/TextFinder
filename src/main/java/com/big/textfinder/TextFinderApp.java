@@ -40,8 +40,8 @@ public class TextFinderApp {
             "Ryan", "Roger"));
 //	private static final String FILE_PATH = "src/main/resources/big.txt";
 //	private static final String FILE_PATH = "/Users/al/Downloads/big.txt"; // 100 GB
-	private static final String FILE_PATH = "/Users/al/Downloads/big2.txt"; // 15 GB
-//	private static final String FILE_PATH = "/Users/al/Downloads/big3.txt"; // 5 GB
+//	private static final String FILE_PATH = "/Users/al/Downloads/big2.txt"; // 15 GB
+	private static final String FILE_PATH = "/Users/al/Downloads/big3.txt"; // 5 GB
 	
 	public static void main(String[] args) {
 		FileProcessor fileProcessor = new FileProcessor();

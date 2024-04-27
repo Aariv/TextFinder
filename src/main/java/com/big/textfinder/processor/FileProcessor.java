@@ -1,6 +1,8 @@
 package com.big.textfinder.processor;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -48,10 +50,20 @@ public class FileProcessor {
 						TextMatcher matcher = new TextMatcher(searchTerms);
 						Map<String, List<WordLocation>> matches = matcher.findMatches(finalPart,
 								finalLineNumber - finalPart.size() + 1);
+						// Note:- The code may still run into OutOfMemoryError issues with a 5GB input file on
+						// a system with only 2GB of RAM. This is because the code is storing all
+						// matches in memory in the allMatches map. If the file contains a large number
+						// of matches, this map could potentially consume a lot of memory.
+						
+						// Instead of storing all matches in memory, write them to a file or a database
+						// as you find them. This would allow you to handle files of any size, limited
+						// only by the amount of disk space available.
 						matches.forEach((k, v) -> allMatches.merge(k, v, (list1, list2) -> {
 							list1.addAll(list2);
 							return list1;
 						}));
+						
+//						writeMatchesToFile(matches);
 					});
 					part.clear();
 				}
@@ -69,4 +81,13 @@ public class FileProcessor {
 		return allMatches;
 	}
 
+	private static void writeMatchesToFile(Map<String, List<WordLocation>> matches) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("/Users/al/Downloads/matches.txt", true))) {
+            matches.forEach((k, v) -> {
+                writer.println(k + " --> " + v);
+            });
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
 }
